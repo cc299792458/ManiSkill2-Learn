@@ -30,7 +30,7 @@ agent_cfg = dict(
         nn_cfg=dict(
             type="LinearMLP",
             norm_cfg=None,
-            mlp_spec=["obs_shape", 256, 256, "action_shape * 2"],
+            mlp_spec=["obs_shape", 256, 256, "action_shape"],
             bias="auto",
             inactivated_output=True,
             # zero_init_output=True,
@@ -51,7 +51,7 @@ agent_cfg = dict(
             type="LinearMLP",
             norm_cfg=None,
             bias="auto",
-            mlp_spec=["obs_shape + action_shape", 256, 256, 1],
+            mlp_spec=["obs_shape", 256, 256, 1],
             inactivated_output=True,
             # zero_init_output=True,
             linear_init_cfg=dict(
@@ -96,7 +96,7 @@ replay_cfg = dict(
 
 rollout_cfg = dict(
     type="Rollout",
-    num_procs=5,
+    num_procs=16,
     with_info=True,
     multi_thread=False,
 )
