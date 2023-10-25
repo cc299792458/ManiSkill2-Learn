@@ -36,6 +36,7 @@ def parse_args():
     parser = argparse.ArgumentParser(description="Unified API for Training and Evaluation")
     # Configurations
     parser.add_argument("config", help="Configuration file path")
+    # parser.add_argument("--config", help="Configuration file path", default="./configs/mfrl/sac/maniskill2_state.py")
     parser.add_argument(
         "--cfg-options",
         "--opt",
@@ -64,13 +65,13 @@ def parse_args():
     parser.add_argument("--clean-up", help="Clean up the work-dir", action="store_true")
 
     # Evaluation mode
-    parser.add_argument("--evaluation", "--eval", help="Evaluate a model, instead of training it", action="store_true")
+    parser.add_argument("--evaluation", "--eval", help="Evaluate a model, instead of training it", action="store_true", default=True)
     parser.add_argument("--reg-loss", help="Measure regression loss during evaluation", action="store_true")
     parser.add_argument("--test-name", 
         help="Subdirectory name under work-dir to save the test result (if None, use {work-dir}/test)", default=None)
 
     # Resume checkpoint model
-    parser.add_argument("--resume-from", default=None, nargs="+", help="A specific checkpoint file to resume from")
+    parser.add_argument("--resume-from", default="./work_dirs/PickCube-v3/models/model_500000.ckpt", nargs="+", help="A specific checkpoint file to resume from")
     parser.add_argument(
         "--auto-resume", 
         help="Auto-resume the checkpoint under work-dir. If --resume-from is not specified, --auto-resume is set to True", action="store_true"
